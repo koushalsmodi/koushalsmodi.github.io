@@ -5,73 +5,138 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Koushal S Modi</title>
   <style>
-    body { font-family: Georgia, "Times New Roman", serif; max-width: 720px; margin: 0 auto; padding: 24px 20px 64px; line-height: 1.7; color: #222; }
-    header { display: flex; justify-content: space-between; align-items: center; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 0.95rem; }
-    header a { color: #444; text-decoration: none; margin-left: 16px; }
-    header a:first-child { margin-left: 0; font-weight: 600; color: #111; }
-    header nav a:hover { text-decoration: underline; }
-    h1 { font-size: 2.6rem; text-align: center; margin: 64px 0 24px; font-weight: 400; }
-    h2 { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 1.25rem; margin-top: 48px; border-bottom: 1px solid #e5e5e5; padding-bottom: 8px; }
-    .tagline { text-align: center; color: #555; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin-top: -12px; }
-    .role { margin-bottom: 16px; }
-    .role strong { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; display: block; }
-    .meta { color: #666; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 0.9rem; }
-    .links a { color: #444; margin-right: 12px; }
+    :root { --ink: #111; --body: #222; --muted: #666; --faint: #888; --line: #e7e7e7; --lav: #efeaf6; --purple: #6f5b8a; }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--body); font-family: Georgia, "Times New Roman", serif; font-size: 20px; line-height: 1.65; background: #fff; }
+    a { color: var(--body); text-decoration: underline; text-decoration-color: #bbb; text-underline-offset: 3px; }
+    a:hover { text-decoration-color: var(--ink); }
+    .top { max-width: 1080px; margin: 0 auto; padding: 28px 24px 0; display: flex; justify-content: space-between; align-items: center; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 15px; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font-weight: 600; }
+    .mark { width: 30px; height: 30px; background: var(--ink); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 18px; font-family: Georgia, serif; }
+    .top nav a { text-decoration: none; color: #555; margin-left: 26px; }
+    .top nav a:hover, .top nav a.active { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+    main { max-width: 760px; margin: 0 auto; padding: 0 24px 80px; }
+    .diagram { display: block; margin: 56px auto 8px; max-width: 340px; width: 100%; }
+    h1 { font-weight: 400; font-size: 56px; line-height: 1.1; text-align: center; margin: 24px 0 8px; color: var(--ink); }
+    .tagline { text-align: center; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 16px; color: var(--muted); margin: 0 0 36px; }
+    .photo { float: right; width: 168px; height: 168px; border-radius: 50%; background: #f0edea; color: #555; display: flex; align-items: center; justify-content: center; font-size: 42px; margin: 8px 0 16px 28px; shape-outside: circle(); }
+    .intro { overflow: hidden; }
+    hr { border: none; border-top: 1px solid var(--line); margin: 56px 0; }
+    h2 { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 22px; font-weight: 600; color: var(--ink); margin: 0 0 20px; }
+    .facts { list-style: none; padding: 0; margin: 0; }
+    .facts li { margin-bottom: 28px; padding-left: 18px; position: relative; }
+    .facts li::before { content: "·"; position: absolute; left: 0; color: var(--faint); font-weight: 700; }
+    .facts .sub { display: block; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 15px; color: var(--muted); margin-top: 2px; }
+    .timeline { border-top: 1px solid var(--line); }
+    .row { display: flex; justify-content: space-between; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+    .row strong { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 18px; color: var(--ink); display: block; }
+    .row .org { font-size: 19px; }
+    .row .date { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 15px; color: var(--muted); white-space: nowrap; padding-top: 4px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 15px; }
+    .tags span { background: #f4f4f4; border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; }
+    footer { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 15px; color: var(--muted); }
+    @media (max-width: 640px) {
+      body { font-size: 18px; }
+      h1 { font-size: 42px; }
+      .top { flex-direction: column; gap: 16px; align-items: flex-start; }
+      .top nav a { margin-left: 0; margin-right: 20px; }
+      .photo { float: none; margin: 0 auto 20px; }
+      .row { flex-direction: column; gap: 4px; }
+      .row .date { white-space: normal; }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <a href="index.html">Koushal S Modi</a>
+  <div class="top">
+    <a class="brand" href="index.html"><span class="mark">K</span> Koushal S Modi</a>
     <nav>
-      <a href="index.html">About</a>
       <a href="writing.html">Writing</a>
       <a href="projects.html">Projects</a>
       <a href="certifications.html">Certifications</a>
+      <a href="index.html" class="active">About</a>
     </nav>
-  </header>
-
-  <h1>Koushal S Modi</h1>
-  <p class="tagline">Data Analyst at American Express — Phoenix, Arizona</p>
-
-  <p>Hello! I'm Koushal. I'm working at American Express, and I pursued a bachelor's degree in Data Science and Financial Economics at the University of San Francisco. Originally from Mumbai, India, I'm interested in deep learning, AI, machine learning, and fintech.</p>
-
-  <h2>Experience</h2>
-  <div class="role">
-    <strong>Data Analyst, Financial Systems — American Express</strong>
-    <span class="meta">January 2025 — Present · Phoenix, Arizona</span>
-  </div>
-  <div class="role">
-    <strong>Data Science Intern — Juniper Networks</strong>
-    <span class="meta">May 2024 — August 2024 · Sunnyvale, California</span>
-  </div>
-  <div class="role">
-    <strong>Data Science Intern — The Data Institute, University of San Francisco</strong>
-    <span class="meta">January 2024 — May 2024 · San Francisco, California</span>
   </div>
 
-  <h2>Education</h2>
-  <div class="role">
-    <strong>University of San Francisco — B.S., Data Science and Economics (Finance concentration)</strong>
-    <span class="meta">January 2023 — December 2024</span>
-  </div>
+  <main>
+    <svg class="diagram" viewBox="0 0 340 110" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Data, model, insight diagram">
+      <line x1="8" y1="55" x2="70" y2="55" stroke="#6f5b8a" stroke-width="1.5" />
+      <circle cx="8" cy="55" r="4" fill="#6f5b8a" />
+      <rect x="70" y="32" width="78" height="30" rx="5" fill="#efeaf6" stroke="#d8cfe6" />
+      <text x="109" y="52" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#333">Data</text>
+      <path d="M148 47 Q168 47 168 55 Q168 63 188 63" fill="none" stroke="#6f5b8a" stroke-width="1.5" />
+      <path d="M148 63 Q168 63 168 55 Q168 47 188 47" fill="none" stroke="#b9aec9" stroke-width="1.5" />
+      <rect x="188" y="32" width="78" height="30" rx="5" fill="#efeaf6" stroke="#d8cfe6" />
+      <text x="227" y="52" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#333">Model</text>
+      <path d="M266 47 Q286 47 286 55" fill="none" stroke="#6f5b8a" stroke-width="1.5" />
+      <rect x="286" y="40" width="46" height="30" rx="5" fill="#fff" stroke="#ddd" />
+      <text x="309" y="60" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#333">Insight</text>
+      <circle cx="332" cy="55" r="4" fill="#6f5b8a" />
+      <line x1="286" y1="55" x2="332" y2="55" stroke="#6f5b8a" stroke-width="1.5" opacity="0" />
+    </svg>
 
-  <h2>Highlights</h2>
-  <ul>
-    <li>Most Outstanding Graduating Student in Data Science — May 2024</li>
-    <li>Most Outstanding First Year Student in Data Science — May 2023</li>
-    <li>Dean's List, all eligible semesters</li>
-  </ul>
+    <h1>Koushal S Modi</h1>
+    <p class="tagline">Data Analyst at American Express — Phoenix, Arizona</p>
 
-  <h2>Skills</h2>
-  <p>LangChain · Model Context Protocol (MCP) · Python · PyTorch · Deep Learning · Machine Learning</p>
+    <div class="intro">
+      <div class="photo" aria-label="Photo placeholder">KS</div>
+      <p>I'm Koushal! As a data analyst turned AI builder, I'm interested in making data useful — from messy, real-world data to models and decisions people can actually act on.</p>
+      <p>By taking a rather unorthodox path — from Mumbai to a Data Science and Financial Economics degree at the University of San Francisco — I have been fortunate to explore interesting opportunities. From interning at <a href="projects.html">Juniper Networks</a> to working in Financial Systems at American Express, to writing and building with LangChain and agentic AI.</p>
+      <p>I'm interested in deep learning, AI, and machine learning. Beyond the classroom, I'm furthering my knowledge of deep learning by using Python and PyTorch, and I've also grown a passion for fintech.</p>
+    </div>
 
-  <h2>Languages</h2>
-  <p>English, Gujarati, Marathi, and Hindi (native or bilingual) · French (elementary)</p>
+    <hr />
 
-  <h2>Links</h2>
-  <p class="links">
-    <a href="https://github.com/koushalsmodi">GitHub</a>
-    <a href="https://www.linkedin.com/in/koushalsmodi/">LinkedIn</a>
-  </p>
+    <h2>Fun facts</h2>
+    <ul class="facts">
+      <li>I work as a Data Analyst, Financial Systems, at American Express.
+        <span class="sub">Phoenix, Arizona — since January 2025</span>
+      </li>
+      <li>I graduated from the University of San Francisco with a B.S. in Data Science and Economics.
+        <span class="sub">Most Outstanding Graduating Student in Data Science, May 2024</span>
+      </li>
+      <li>I interned at Juniper Networks, modelling switch power consumption.
+        <span class="sub">Linear regression, random forests, gradient boosting, and neural networks</span>
+      </li>
+      <li>I completed my degree coursework in 4 semesters.
+        <span class="sub">Dean's List, all eligible semesters</span>
+      </li>
+      <li>I speak five languages.
+        <span class="sub">English, Gujarati, Marathi, and Hindi, plus elementary French</span>
+      </li>
+    </ul>
+
+    <hr />
+
+    <h2>Experience &amp; Education</h2>
+    <div class="timeline">
+      <div class="row">
+        <div><strong>Data Analyst, Financial Systems</strong><span class="org">American Express — Phoenix, Arizona</span></div>
+        <div class="date">Jan 2025 — Present</div>
+      </div>
+      <div class="row">
+        <div><strong>Data Science Intern</strong><span class="org">Juniper Networks — Sunnyvale, California</span></div>
+        <div class="date">May — Aug 2024</div>
+      </div>
+      <div class="row">
+        <div><strong>Data Science Intern</strong><span class="org">The Data Institute, University of San Francisco</span></div>
+        <div class="date">Jan — May 2024</div>
+      </div>
+      <div class="row">
+        <div><strong>B.S., Data Science and Economics</strong><span class="org">University of San Francisco — Finance concentration</span></div>
+        <div class="date">Jan 2023 — Dec 2024</div>
+      </div>
+    </div>
+
+    <hr />
+
+    <h2>Skills</h2>
+    <p class="tags"><span>LangChain</span><span>Model Context Protocol (MCP)</span><span>Python</span><span>PyTorch</span><span>Deep Learning</span><span>Machine Learning</span></p>
+
+    <hr />
+
+    <footer>
+      <p>You can find my work on <a href="https://github.com/koushalsmodi">GitHub</a>, or connect with me on <a href="https://www.linkedin.com/in/koushalsmodi/">LinkedIn</a>.</p>
+    </footer>
+  </main>
 </body>
 </html>
